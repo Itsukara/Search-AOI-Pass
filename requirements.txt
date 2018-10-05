@@ -1,0 +1,7 @@
+###### Requirements without Version Specifiers ######
+ephem
+pyorbital
+
+###### Requirements with Version Specifiers ######
+
+

@@ -1,0 +1,20 @@
+{
+    "satellites": [
+        "GEOEYE",
+        "WORLDVIEW-1",
+        "WORLDVIEW-2",
+        "WORLDVIEW-4"
+    ],
+    "satellite_map": {
+        "GEOEYE": "GE01",
+        "WORLDVIEW-1": "WV01",
+        "WORLDVIEW-2": "WV02",
+        "WORLDVIEW-4": "WV04"
+    },
+    "orbitoffset_map": {
+        "GE01": 0,
+        "WV01": 0,
+        "WV02": 0,
+        "WV04": 0
+    }
+}

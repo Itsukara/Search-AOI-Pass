@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="yadcf/jquery.dataTables.yadcf.css" />
+    <script type="text/javascript" src="yadcf/jquery.dataTables.yadcf.js"></script>
+    <style type="text/css">
+        table.filters {
+            background-color: lightyellow;
+            padding: 5px;
+            margin: 5px;
+            font-weight:bold; 
+        }
+        td.filters {
+            vertical-align: top;
+            padding-right: 10px;
+            padding-bottom: 10px;
+        }
+    </style>
+    <meta charset=utf-8 />
+        <script>
+            var dataSet = [
+                {{ AOI_PASS_DATA }}
+                ];
+
+                $(document).ready(function () {
+                    var oTable = $('#table').DataTable({
+                        data: dataSet,
+                        ordering: false,
+                        <!-- searching: false, -->
+                        pageLength: 25,
+                        columns: [
+                            { title: "Satellite"},
+                            { title: "AOI" },
+                            { title: "Orbit" },
+                            { title: "Date" },
+                            { title: "Time" },
+                            { title: "Latitude"},
+                            { title: "Longitude"},
+                            { title: "Height"},
+                            { title: "Azimuth"},
+                            { title: "Altitude"},
+                            { title: "Distance"},
+                            { title: "OffNadir"},
+                        ],
+                        columnDefs: [
+                            { targets: [0,1,2], className: 'dt-body-left'},
+                            { targets: '_all', className: 'dt-body-right'},
+                            <!-- { targets: [4, 5], visible: false}, -->
+                            <!-- { targets: '_all', visible: true }, -->
+                        ],
+                    });
+
+                    yadcf.init(oTable, [{
+                        column_number: 0,
+                        filter_container_id: 'satellite_filter',
+                        filter_type: 'multi_select',
+                    },
+                    {
+                        column_number: 1,
+                        filter_container_id: 'aoi_filter',
+                        filter_type: 'select',
+                    },
+                    {
+                        column_number: 2,
+                        filter_container_id: 'orbit_filter',
+                        filter_type: 'select',
+                    },
+                    {
+                        column_number: 3,
+                        filter_container_id: 'date_filter',
+                        filter_type: 'select',
+                    },
+                    ]);
+                });
+        </script>
+    </head>
+    <body>
+        <table class="filters">
+            <tbody>
+                <tr class="filters">
+                    <td class="filters">
+                        <div>
+                            Satellite:<br>
+                            <div id="satellite_filter"></div>
+                        </div>
+                    </td>
+                    <td class="filters">
+                        <div>
+                            AOI:<br>
+                            <div id="aoi_filter"></div>
+                        </div>
+                    </td>
+                    <td class="filters">
+                        <div>
+                            Orbit:<br>
+                            <div id="orbit_filter"></div>
+                        </div>
+                    </td>
+                    <td class="filters">
+                        <div>
+                            Date:<br>
+                            <div id="date_filter"></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table id="table" class="stripe hover row-border compact nowrap" width="100%"></table>
+    </body>
+</html>
