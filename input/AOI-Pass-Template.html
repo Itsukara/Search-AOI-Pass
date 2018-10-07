@@ -24,91 +24,58 @@
             var dataSet = [
                 {{ AOI_PASS_DATA }}
                 ];
-
-                $(document).ready(function () {
-                    var oTable = $('#table').DataTable({
-                        data: dataSet,
-                        ordering: false,
-                        <!-- searching: false, -->
-                        pageLength: 25,
-                        columns: [
-                            { title: "Satellite"},
-                            { title: "AOI" },
-                            { title: "Orbit" },
-                            { title: "Date" },
-                            { title: "Time" },
-                            { title: "Latitude"},
-                            { title: "Longitude"},
-                            { title: "Height"},
-                            { title: "Azimuth"},
-                            { title: "Altitude"},
-                            { title: "Distance"},
-                            { title: "OffNadir"},
-                        ],
-                        columnDefs: [
-                            { targets: [0,1,2], className: 'dt-body-left'},
-                            { targets: '_all', className: 'dt-body-right'},
-                            <!-- { targets: [4, 5], visible: false}, -->
-                            <!-- { targets: '_all', visible: true }, -->
-                        ],
-                    });
-
-                    yadcf.init(oTable, [{
-                        column_number: 0,
-                        filter_container_id: 'satellite_filter',
-                        filter_type: 'multi_select',
-                    },
-                    {
-                        column_number: 1,
-                        filter_container_id: 'aoi_filter',
-                        filter_type: 'select',
-                    },
-                    {
-                        column_number: 2,
-                        filter_container_id: 'orbit_filter',
-                        filter_type: 'select',
-                    },
-                    {
-                        column_number: 3,
-                        filter_container_id: 'date_filter',
-                        filter_type: 'select',
-                    },
-                    ]);
+                
+            $(document).ready(function () {
+                var oTable = $('#table').DataTable({
+                    data: dataSet,
+                    ordering: false,
+                    pageLength: 25,
+                    columns: [
+                        { title: "Satellite<br>"},
+                        { title: "AOI<br>" },
+                        { title: "Orbit<br>" },
+                        { title: "Date<br>" },
+                        { title: "Time" },
+                        { title: "Latitude"},
+                        { title: "Longitude"},
+                        { title: "Height"},
+                        { title: "Azimuth"},
+                        { title: "Altitude"},
+                        { title: "Distance"},
+                        { title: "OffNadir"},
+                    ],
+                    columnDefs: [
+                        { targets: [0,1,2,3], className: 'dt-body-left'},
+                        { targets: '_all', className: 'dt-body-right'},
+                    ],
                 });
+
+                yadcf.init(oTable, [{
+                    column_number: 0,
+                    filter_type: 'select',
+                },
+                {
+                    column_number: 1,
+                    filter_type: 'select',
+                },
+                {
+                    column_number: 2,
+                    filter_type: 'select',
+                },
+                {
+                    column_number: 3,
+                    filter_type: 'select',
+                },
+                ],
+                {
+                    cumulative_filtering: true,
+                },
+                );
+            });
         </script>
     </head>
-    <body>
-        <table class="filters">
-            <tbody>
-                <tr class="filters">
-                    <td class="filters">
-                        <div>
-                            Satellite:<br>
-                            <div id="satellite_filter"></div>
-                        </div>
-                    </td>
-                    <td class="filters">
-                        <div>
-                            AOI:<br>
-                            <div id="aoi_filter"></div>
-                        </div>
-                    </td>
-                    <td class="filters">
-                        <div>
-                            Orbit:<br>
-                            <div id="orbit_filter"></div>
-                        </div>
-                    </td>
-                    <td class="filters">
-                        <div>
-                            Date:<br>
-                            <div id="date_filter"></div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 
+    <body>
         <table id="table" class="stripe hover row-border compact nowrap" width="100%"></table>
     </body>
 </html>
